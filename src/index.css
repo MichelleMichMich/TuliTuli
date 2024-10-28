@@ -1,0 +1,160 @@
+html {box-sizing: border-box;}
+*, ::before, ::after {box-sizing: inherit;}
+
+h1, h2, h3, h4 {
+    margin-top: 0;
+}
+
+/* ---  CAT  ----------------------------------------------------------- */
+
+
+.cat-card {
+    display: flex;            
+    align-items: center;      
+    border: 1px solid #ddd;   
+    padding: 10px;            
+    margin-bottom: 20px;      
+    border-radius: 8px;       
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.cat-image {
+    width: 120px;             
+    height: 120px;           
+    object-fit: cover;        
+    border-radius: 50%;       
+    margin-right: 20px;      
+}
+
+.cat-info {
+    display: flex;
+    flex-direction: column;     
+}
+
+.cat-info h2 {
+    margin: 0;                
+    font-size: 1.5em;        
+}
+
+.cat-info p {
+    margin: 5px 0 0;          
+    color: #555;              
+}
+
+
+
+/* ---  DOG  ----------------------------------------------------------- */
+
+
+.dog-card {
+    display: flex;            
+    align-items: center;      
+    border: 1px solid #ddd;   
+    padding: 10px;            
+    margin-bottom: 20px;      
+    border-radius: 8px;       
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.dog-image {
+    width: 120px;             
+    height: 120px;           
+    object-fit: cover;        
+    border-radius: 50%;       
+    margin-right: 20px;      
+}
+
+.dog-info {
+    display: flex;
+    flex-direction: column;     
+}
+
+.dog-info h2 {
+    margin: 0;                
+    font-size: 1.5em;        
+}
+
+.dog-info p {
+    margin: 5px 0 0;          
+    color: #555;              
+}
+
+/* ---  GIFT  ----------------------------------------------------------- */
+
+.gift-card {
+    display: flex;            
+    align-items: center;      
+    border: 1px solid #ddd;   
+    padding: 10px;            
+    margin-bottom: 20px;      
+    border-radius: 8px;       
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.gift-image {
+    width: 120px;             
+    height: 120px;           
+    object-fit: cover;        
+    border-radius: 50%;       
+    margin-right: 20px;      
+}
+
+.gift-info {
+    display: flex;
+    flex-direction: column;     
+}
+
+.gift-info h2 {
+    margin: 0;                
+    font-size: 1.5em;        
+}
+
+.gift-info p {
+    margin: 5px 0 0;          
+    color: #555;              
+}
+
+/* ---  ACTIONS ----------------------------------------------------------- */
+
+.action-card {
+    display: flex;            
+    align-items: center;      
+    border: 1px solid #ddd;   
+    padding: 10px;            
+    margin-bottom: 20px;      
+    border-radius: 8px;       
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.action-image {
+    width: 120px;             
+    height: 120px;           
+    object-fit: cover;        
+    border-radius: 50%;       
+    margin-right: 20px;      
+}
+
+.action-info {
+    display: flex;
+    flex-direction: column;     
+}
+
+.action-info h2 {
+    margin: 0;                
+    font-size: 1.5em;        
+}
+
+.action-info p {
+    margin: 5px 0 0;          
+    color: #555;              
+}
+
+/* ------ DETAIL ZVÍŘETE -------------- */
+
+.animal-image {
+    width: 300px;             
+    height: 300px;           
+    object-fit: cover;        
+    border-radius: 30%;       
+    margin-right: 20px;      
+}

@@ -2,6 +2,7 @@ import './App.css'
 // import { SettingsContext } from "./context/SettingsContext"
 import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './context/AuthProvider'
 import { Navigate } from 'react-router-dom'
 import { Login } from './components/Login'
 import { Registration } from './components/Registration'
@@ -17,10 +18,12 @@ import { ActionsPage } from './components/ActionsPage'
 import { ContactPage } from './components/ContactPage'
 
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   return (
     <>
+      <AuthProvider>
       <Router>
         <Routes>
           <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated}/>}/>
@@ -37,6 +40,7 @@ function App() {
           <Route path='/contact' element={<ContactPage/>}/>
         </Routes>
       </Router>
+      </AuthProvider>
     </>
   )
 }

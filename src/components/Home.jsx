@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
-export function Home() {
+export function Home({ setIsAuthenticated }) {
+    const { logout } = useAuth();
     const navigate = useNavigate();
     const handleCatsClick = () => {
         navigate('/cats');
@@ -24,6 +26,7 @@ export function Home() {
     };
 
     const handleLogoutClick = () => {
+        logout();
         setIsAuthenticated(false);
         navigate('/login');
     }

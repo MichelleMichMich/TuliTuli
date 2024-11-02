@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../supabase/supabase-client';
+// import { supabase } from '../supabase/supabase-client';
+import { useAuth } from '../context/AuthProvider';
 
 export function Login({setIsAuthenticated}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const { login, isAuth } = useAuth();
     const navigate = useNavigate();
 
     const handleLoginClick =  async (e) => {
         e.preventDefault()
         console.log('Přihlašuji....', email, password)
-        // if (email === "user@user.cz" && password === "user123") {
-        //     setIsAuthenticated(true);
-        //     navigate('/');
-        // } else {
-        //     alert('Nesprávný e-mail nebo heslo');
-        // }
-
-        const {error} = await supabase.auth.signInWithPassword({email, password})
-        
-        if (!error && data) {
-            console.log(data)
-        }
+        try {
+            await login(email, password);
+            if (isAuth) {
+              setIsAuthenticated(true);
+              navigate('/');
+              console.log("Heslo ověřeno")
+            } else {
+              alert('Nesprávný e-mail nebo heslo');
+            }
+          } catch (error) {
+            console.error('Přihlášení selhalo:', error);
+            alert('Došlo k chybě při přihlášení');
+          }
+        // login(email, password);
         
     };
 

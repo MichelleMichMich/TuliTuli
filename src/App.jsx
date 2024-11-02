@@ -1,5 +1,5 @@
 import './App.css'
-// import { SettingsContext } from "./context/SettingsContext"
+
 import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './context/AuthProvider'

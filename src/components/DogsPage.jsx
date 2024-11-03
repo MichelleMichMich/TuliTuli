@@ -1,7 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
+
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+
 export function DogsPage() {
+
     const [dogs, setDogs] = useState([]);
 
     useEffect(() => {
@@ -15,7 +21,7 @@ export function DogsPage() {
         navigate('/dogs/dogsReservation')
     }
 
-    const handleCardClick = (id) => {
+    const handleCardClick = (animalType, id) => {
         navigate(`/dogs/${id}`);
     }
 
@@ -23,11 +29,13 @@ export function DogsPage() {
     return(
         <>
             <h1>Pejsi v TuliTuli</h1>
-            <button onClick={handleDogReservation}>Rezervace venčení</button>
-        
+            <Box display="flex" justifyContent="center" alignItems="center" my={2}>
+            <Button variant="contained" onClick={handleDogReservation}>Rezervace venčení</Button>
+            </Box>
+
             <div className="dogs-offer">
                 {dogs.map((dog) => (
-                    <div key={dog.id} className="dog-card" onClick={() =>handleCardClick(dog.id)}>
+                    <div key={dog.id} className="dog-card" onClick={() =>handleCardClick('dogs', dog.id)}>
                         <img src={dog.imageUrl} alt={dog.name} className="dog-image" />
                         <div className="dog-info">
                             <h2>{dog.name}</h2>

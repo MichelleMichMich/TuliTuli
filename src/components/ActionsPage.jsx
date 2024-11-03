@@ -19,9 +19,10 @@ export function ActionsPage() {
 
     return(
         <>
+            <div className="actions-page">
             <h1>Akce u nás v TuliTuli</h1>
-            <button onClick={handleHasBeenClick}>Proběhlo</button>
-            <div className="action-Next">
+            {/* <button onClick={handleHasBeenClick}>Proběhlo</button> */}
+            <div className="actions-offer">
                 {actions.map((action) => (
                     <div key={action.id} className="action-card">
                         <img src={action.imageUrl} alt={action.name} className="action-image" />
@@ -31,6 +32,7 @@ export function ActionsPage() {
                         </div>
                     </div>
                 ))}
+            </div>
             </div>
         </>
     )

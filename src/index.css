@@ -2,33 +2,102 @@ html {box-sizing: border-box;}
 *, ::before, ::after {box-sizing: inherit;}
 
 h1, h2, h3, h4 {
-    margin-top: 0;
+    margin-top: 20;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-/* ---  CAT  ----------------------------------------------------------- */
 
+/* -------------- PODBARVENÍ PRO REGISTRACI A LOGIN -------------------------- */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    box-shadow: 0 0 0 1000px white inset;
+    -webkit-text-fill-color: #000;
+  }
+/* ------- NAVBAR ------------------------------------- */
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar button {
+    margin: 5px 0;
+  }
+
+@media (min-width: 600px) {
+    .nav-bar {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+/* -----------------HOME ------------------------------------------------------ */
+.home-page {
+  text-align: center; 
+    padding: 20px; 
+    min-height: 100vh; 
+}
+
+.home-page p {
+  margin-bottom: 40px; 
+  line-height: 1.4; 
+}
+.home-page h1 {
+  margin-bottom: 30px;
+}
+
+.home-page button {
+  margin: 5px 0; 
+}
+
+
+
+
+/* ------  CAT  ----------------------------------------------------------- */
+
+.cats-header {
+    margin-bottom: 20px;
+  }
 
 .cat-card {
-    display: flex;            
-    align-items: center;      
-    border: 1px solid #ddd;   
-    padding: 10px;            
-    margin-bottom: 20px;      
-    border-radius: 8px;       
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.cat-card:hover {
+    transform: scale(1.05);
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+    
+  }
+
 .cat-image {
-    width: 120px;             
-    height: 120px;           
-    object-fit: cover;        
+    width: 200px;             
+    height: 200px;           
+    object-fit: cover;   
     border-radius: 50%;       
-    margin-right: 20px;      
+    margin: 10px 10px auto;     
 }
 
 .cat-info {
     display: flex;
-    flex-direction: column;     
+    flex-direction: column;   
+    align-items: center;  
+    padding: 10px;
 }
 
 .cat-info h2 {
@@ -41,37 +110,87 @@ h1, h2, h3, h4 {
     color: #555;              
 }
 
+.cats-offer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    
+  }
+
+  @media (min-width: 600px) {
+    .header-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .cat-image {
+       
+        width: 200px;             
+        height: 200px;           
+        object-fit: cover;   
+        border-radius: 50%;       
+        margin: 10px 10px auto;     
+    }
+  
+    .cats-offer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .cats-offer {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 
 
 /* ---  DOG  ----------------------------------------------------------- */
 
 
+.dogs-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
 .dog-card {
-    display: flex;            
-    align-items: center;      
-    border: 1px solid #ddd;   
-    padding: 10px;            
-    margin-bottom: 20px;      
-    border-radius: 8px;       
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.dog-card:hover {
+    transform: scale(1.05);
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
 .dog-image {
-    width: 120px;             
-    height: 120px;           
-    object-fit: cover;        
-    border-radius: 50%;       
-    margin-right: 20px;      
+    width: 200px;             
+    height: 200px;           
+    object-fit: cover;   
+    border-radius: 30%;       
+    margin: 10px 10px auto;     
 }
 
 .dog-info {
     display: flex;
-    flex-direction: column;     
+    flex-direction: column;   
+    align-items: center;  
+    padding: 10px;
 }
 
 .dog-info h2 {
     margin: 0;                
-    font-size: 1.5em;        
+    font-size: 1.5em;         
 }
 
 .dog-info p {
@@ -79,29 +198,85 @@ h1, h2, h3, h4 {
     color: #555;              
 }
 
+.dogs-offer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  @media (min-width: 600px) {
+    .header-container {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+  
+    .dogs-offer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .dogs-offer {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
 /* ---  GIFT  ----------------------------------------------------------- */
 
+.gifts-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
 .gift-card {
-    display: flex;            
-    align-items: center;      
-    border: 1px solid #ddd;   
-    padding: 10px;            
-    margin-bottom: 20px;      
-    border-radius: 8px;       
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.gift-card:hover {
+    transform: scale(1.05);
+  }
+
+  .gifts  -page h1 {
+    margin-bottom: 30px; /* Větší odsazení pro poslední odstavec, pokud je třeba */
+  }
+  .gifts-page p {
+    margin: 5px 0; 
+    line-height: 1.2;
+    text-align: center;
+}
+.gifts-page h1 {
+  margin-bottom: 30px; /* Větší odsazení pro poslední odstavec, pokud je třeba */
+}
+.gifts-page p:last-of-type {
+  margin-bottom: 50px; /* Větší odsazení pro poslední odstavec, pokud je třeba */
+}
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
 .gift-image {
-    width: 120px;             
-    height: 120px;           
-    object-fit: cover;        
+    width: 150px;             
+    height: 200px;           
+    object-fit: cover;   
     border-radius: 50%;       
-    margin-right: 20px;      
+    margin: 10px 10px auto;     
 }
 
 .gift-info {
     display: flex;
-    flex-direction: column;     
+    flex-direction: column;   
+    align-items: center;  
+    padding: 10px;
 }
 
 .gift-info h2 {
@@ -114,29 +289,68 @@ h1, h2, h3, h4 {
     color: #555;              
 }
 
+.gifts-offer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  @media (min-width: 600px) {
+    .header-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .gifts-offer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .gifts-offer {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 /* ---  ACTIONS ----------------------------------------------------------- */
 
 .action-card {
-    display: flex;            
-    align-items: center;      
-    border: 1px solid #ddd;   
-    padding: 10px;            
-    margin-bottom: 20px;      
-    border-radius: 8px;       
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.action-card:hover {
+    transform: scale(1.05);
+  }
+  .actions-page h1 {
+    margin-bottom: 50px; /* Větší odsazení pro poslední odstavec, pokud je třeba */
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
 .action-image {
-    width: 120px;             
-    height: 120px;           
-    object-fit: cover;        
-    border-radius: 50%;       
-    margin-right: 20px;      
+    width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5%;
+  margin: 10px auto;     
 }
 
 .action-info {
     display: flex;
-    flex-direction: column;     
+  flex-direction: column;
+  align-items: center;
+  padding: 10px; 
 }
 
 .action-info h2 {
@@ -149,6 +363,59 @@ h1, h2, h3, h4 {
     color: #555;              
 }
 
+.actions-offer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  @media (min-width: 600px) {
+    .header-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }}
+    @media (min-width: 600px) {
+    .actions-offer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .actions-offer {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+/* --------- CONTACT ------------------------- */
+.contacts-offer {
+  text-align: center; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin: 5px 0; 
+  line-height: 1.3;
+}
+.contacts-page h1 {
+  margin-bottom: 30px; /* Větší odsazení pro poslední odstavec, pokud je třeba */
+}
+
+.contacts-offer h2 {
+  margin-top: 20px; 
+  margin-bottom: 5px; 
+}
+
+.contacts-offer p {
+  margin: 2px 0; 
+  line-height: 1.2;
+}
+.contacts-offer p:nth-of-type(5) {
+  margin-bottom: 20px; 
+}
+
+.contacts-offer p:nth-of-type(n+6) {
+  margin-top: 5px; 
+}
+
 /* ------ DETAIL ZVÍŘETE -------------- */
 
 .animal-image {
@@ -158,3 +425,24 @@ h1, h2, h3, h4 {
     border-radius: 30%;       
     margin-right: 20px;      
 }
+
+
+/* --- BUTTONS ----------------------------------------------------------- */
+button[type="submit"], .form-field button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover, .form-field button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (min-width: 600px) {
+    .form-field button {
+      width: auto;
+    }
+  }
+  

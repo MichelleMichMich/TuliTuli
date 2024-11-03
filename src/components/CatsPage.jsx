@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+
 
 export function CatsPage() {
 
@@ -23,10 +27,13 @@ export function CatsPage() {
 
     return(
         <>
-            <h1>Kočičky v TuliTuli</h1>
+            
+            <h1 className="cats-header">Kočičky v TuliTuli</h1>
+            <Box display="flex" justifyContent="center" alignItems="center" my={2}>
+            <Button variant="contained" onClick={handleCatReservation}>Rezervace tulení</Button>
+            </Box>
+           
 
-            <button onClick={handleCatReservation}>Rezervace tulení</button>
-        
             <div className="cats-offer">
                 {cats.map((cat) => (
                     <div key={cat.id} className="cat-card" onClick={() => handleCardClick('cats', cat.id)}>

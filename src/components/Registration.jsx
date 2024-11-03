@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { useAuth } from '../context/AuthContext'
 import { supabase } from '../supabase/supabase-client';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
 
 export function Registration() {
     const [firstName, setFirstName] = useState('');
@@ -13,10 +25,14 @@ export function Registration() {
     const [city, setCity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [age, setAge] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const [message, setMessage] = useState(null);
     
     const navigate = useNavigate();
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event) => event.preventDefault();
 
     const validatePassword = (password) => {
         const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -78,95 +94,132 @@ export function Registration() {
 
     return (
         <>
-            <h2>Registrace</h2>
+             <Box sx={{ maxWidth: 400, mx: 'auto', p: 3 }}>
+            <h1>Registrace</h1>
 
             {message && <p>{message}</p>}
 
             <form onSubmit={handleSubmit}>
-                <div className="form-field">
-                    <label>Jméno</label>
-                    <input
-                        type="text"
-                        value={firstName}
-                        onChange={e => setFirstName(e.target.value)}
-                    />
-                </div>
+                <TextField
+                    label="Jméno"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                />
 
-                <div className="form-field">
-                    <label>Příjmení</label>
-                    <input
-                        type="text"
-                        value={lastName}
-                        onChange={e => setLastName(e.target.value)}
-                    />
-                </div>
-                <div className="form-field">
-                    <label>E-mail</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </div>
+                <TextField
+                    label="Příjmení"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                />
 
-                <div className="form-field">
-                    <label>Heslo</label>
-                    <input
-                        type="password"
+                <TextField
+                    label="E-mail"
+                    variant="outlined"
+                    type="email"
+                    fullWidth
+                    margin="normal"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+
+                <FormControl variant="outlined" fullWidth margin="normal">
+                    <InputLabel htmlFor="outlined-adornment-password">Heslo</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Heslo"
                     />
-                </div>
+                </FormControl>
 
-                <div className="form-field">
-                    <label>Potvrzení hesla</label>
-                    <input
-                        type="password"
+                <FormControl variant="outlined" fullWidth margin="normal">
+                    <InputLabel htmlFor="outlined-adornment-confirm-password">Potvrzení hesla</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-confirm-password"
+                        type={showPassword ? 'text' : 'password'}
                         value={confirmPassword}
                         onChange={e => setConfirmPassword(e.target.value)}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Potvrzení hesla"
                     />
-                </div>
+                </FormControl>
 
-                <hr />
+                <TextField
+                    label="Ulice"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={street}
+                    onChange={e => setStreet(e.target.value)}
+                />
 
-                <div className="form-field">
-                    <label>Ulice</label>
-                    <input
-                        type="text"
-                        value={street}
-                        onChange={e => setStreet(e.target.value)}
-                    />
-                </div>
+                <TextField
+                    label="Město"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                />
 
-                <div className="form-field">
-                    <label>Město</label>
-                    <input
-                        type="text"
-                        value={city}
-                        onChange={e => setCity(e.target.value)}
-                    />
-                </div>
+                <TextField
+                    label="Poštovní číslo"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={postalCode}
+                    onChange={e => setPostalCode(e.target.value)}
+                />
 
-                <div className="form-field">
-                    <label>Poštovní číslo</label>
-                    <input
-                        type="text"
-                        value={postalCode}
-                        onChange={e => setPostalCode(e.target.value)}
-                    />
-                </div>
+                <TextField
+                    label="Věk"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={age}
+                    onChange={e => setAge(e.target.value)}
+                />
 
-                <div className="form-field">
-                    <label>Věk</label>
-                    <input
-                        type="text"
-                        value={age}
-                        onChange={e => setAge(e.target.value)}
-                    />
-                </div>
-
-                <button type="submit">Registrovat</button>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    fullWidth
+                    sx={{ mt: 2 }}
+                >
+                    Registrovat
+                </Button>
             </form>
+        </Box>
         </>
     );
 }

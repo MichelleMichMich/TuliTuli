@@ -1,58 +1,12 @@
-// import React, { useState, useEffect  } from "react";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-// import { supabase } from '../supabase/supabase-client';
-
-// export function CatsReservation() {
-//     const [selectedDate, setSelectedDate] = useState(null);
-//     const [selectedTime, setSelectedTime] = useState('');
-
-//     const handleDateChange = (date) => {
-//         setSelectedDate(date);
-//     };
-
-//     const handleTimeChange = (event) => {
-//         setSelectedTime(event.target.value);
-//     };
-
-//     const handleReservationSubmit = () => {
-    
-//         if (selectedDate && selectedTime) {
-//             alert(`Rezervace byla provedena na ${selectedDate.toLocaleDateString()} v ${selectedTime}`);
-//         } else {
-//             alert('Vyplňte prosím všechny údaje.');
-//         }
-//     };
-
-//     return (
-//         <>
-//             <h1>Rezervace tulení s kočičkami</h1>
-//             <div>
-//                 <label>Vyberte datum:</label>
-//                 <DatePicker
-//                     selected={selectedDate}
-//                     onChange={handleDateChange}
-//                     dateFormat="dd/MM/yyyy"
-//                     minDate={new Date()}
-//                     placeholderText="Vyberte datum"
-//                 />
-//             </div>
-//             <div>
-//                 <label>Vyberte čas:</label>
-//                 <input
-//                     type="time"
-//                     value={selectedTime}
-//                     onChange={handleTimeChange}
-//                 />
-//             </div>
-//             <button onClick={handleReservationSubmit}>Rezervovat</button>
-//         </>
-//     );
-// }
-
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabase/supabase-client';
+
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+
+
+
 
 export function CatsReservation() {
     const [date, setDate] = useState('');
@@ -60,6 +14,11 @@ export function CatsReservation() {
     const [selectedTime, setSelectedTime] = useState('');
     const [message, setMessage] = useState('');
 
+    useEffect(() => {
+        // Generování časových slotů při prvním načtení stránky
+        const times = generateTimeSlots();
+        setAvailableTimes(times);
+    }, []);
    
     const generateTimeSlots = () => {
         const times = [];
@@ -98,7 +57,13 @@ export function CatsReservation() {
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         setDate(selectedDate);
-        fetchAvailableTimes(selectedDate);
+        // fetchAvailableTimes(selectedDate);
+        if (selectedDate) {
+            fetchAvailableTimes(selectedDate);
+        } else {
+            // Pokud není datum vybráno, vrátíme všechny časové sloty
+            setAvailableTimes(generateTimeSlots());
+        }
     };
 
     
@@ -140,39 +105,42 @@ export function CatsReservation() {
 
     return (
         <>
-            <h2>Rezervace tulení s kočičkami</h2>
+            <h1>Rezervace tulení s kočičkami</h1>
+            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mb={2}>
+                <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
+                    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mb={2}>
+                        <div className="form-field" style={{ marginBottom: '20px', width: '100%' }}>
+                            <label><strong>Vyberte datum:</strong></label>
+                            <input
+                                type="date"
+                                value={date}
+                                onChange={handleDateChange}
+                                style={{ width: '100%', padding: '8px', marginTop: '10px' }}
+                            />
+                        </div>
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-field">
-                    <label>Vyberte datum:</label>
-                    <input
-                        type="date"
-                        value={date}
-                        onChange={handleDateChange}
-                    />
-                </div>
+                        <div className="form-field" style={{ marginBottom: '20px', width: '100%' }}>
+                            <label><strong>Vyberte čas:</strong></label>
+                            <select
+                                value={selectedTime}
+                                onChange={(e) => setSelectedTime(e.target.value)}
+                                style={{ width: '100%', padding: '8px', marginTop: '10px' }}
+                            >
+                                <option value="">-- Vyberte čas --</option>
+                                {availableTimes.map((time, index) => (
+                                    <option key={index} value={time}>
+                                        {time} - {`${parseInt(time.split(':')[0]) + 1}:00`}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
-                {availableTimes.length > 0 && (
-                    <div className="form-field">
-                        <label>Vyberte čas:</label>
-                        <select
-                            value={selectedTime}
-                            onChange={(e) => setSelectedTime(e.target.value)}
-                        >
-                            <option value="">-- Vyberte čas --</option>
-                            {availableTimes.map((time, index) => (
-                                <option key={index} value={time}>
-                                    {time} - {`${parseInt(time.split(':')[0]) + 1}:00`} 
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                )}
+                        <Button variant="contained" type="submit">Rezervovat</Button>
+                    </Box>
+                </form>
 
-                <button type="submit">Rezervovat</button>
-            </form>
-
-            {message && <p>{message}</p>}
+                {message && <p>{message}</p>}
+            </Box>
         </>
     );
 }

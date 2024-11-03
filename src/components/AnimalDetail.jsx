@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Box from '@mui/material/Box';
 
 export function AnimalDetail() {
 
@@ -18,7 +19,7 @@ export function AnimalDetail() {
     }
 
     return(
-        <>
+        <Box display="flex" flexDirection="column" alignItems="center" minHeight="100vh">
         <div className="animal-detail">
             <h1>{animal.name}</h1>
             <p><strong>Věk:</strong> {animal.age}</p>
@@ -30,6 +31,6 @@ export function AnimalDetail() {
             ))}
             </div>
         </div>
-        </>
+        </Box>
     )
 }

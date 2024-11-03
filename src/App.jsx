@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthProvider'
 import { Navigate } from 'react-router-dom'
 import { Login } from './components/Login'
 import { Registration } from './components/Registration'
+import { NavBar } from './components/NavBar'
 import { Home } from './components/Home'
 import { CatsPage } from './components/CatsPage'
 import { DogsPage } from './components/DogsPage'
@@ -25,6 +26,7 @@ function App() {
     <>
       <AuthProvider>
       <Router>
+          { isAuthenticated && <NavBar setIsAuthenticated={setIsAuthenticated} /> } 
         <Routes>
           <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated}/>}/>
           <Route path='/registration' element={<Registration/>}/>

@@ -12,13 +12,14 @@ export function GiftsPage() {
 
    return(
         <>
+        <div className="gifts-page">
             <h1>Dary pro TuliTuli</h1>
             <p>Dary, které můžete poskytnou TuliTuli a my za ně budeme velmi vděční</p>
             <p>Pokud chcete útulku TuliTuli něco darovat, zde máte pár tipů, keré jsou aktuálně nejvíce potřeba.</p>
             <p>Pozor, jednotlivé položky se mění v průběhu času dle aktuální potřeby</p>
             <p>Vše nám můžete zasílat na naši adresu, případně rádi převezmeme a poděkujeme osobně.</p>
 
-            <div className="gift-forUs">
+            <div className="gifts-offer">
                 {gifts.map((gift) => (
                     <div key={gift.id} className="gift-card">
                         <img src={gift.imageUrl} alt={gift.name} className="gift-image" />
@@ -27,6 +28,7 @@ export function GiftsPage() {
                         </div>
                     </div>
                 ))}
+            </div>
             </div>
         </>
     )

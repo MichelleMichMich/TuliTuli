@@ -48,11 +48,11 @@ export function Home({ setIsAuthenticated }) {
             <p>Jsme útulek pro kočky a psy.
             <br></br>Můžete nás navštívit, hrát si s námi nebo nám poskytnout nový domov.</p>
             <ButtonGroup orientation="vertical" variant="text" aria-label="Vertical button group">
-            <Button variant="contained" onClick={handleCatsClick} startIcon={<> <PetsIcon /></>} style={{ padding: '30px 200px', fontSize: '24px' }}>Kočky</Button>
-            <Button variant="contained" onClick={handleDogsClick} startIcon={<><LocalFireDepartmentIcon/> <PetsIcon/></>} style={{ padding: '30px 200px', fontSize: '24px' }}>Psi</Button>
-            <Button variant="contained" onClick={handleGiftsClick} startIcon={<CardGiftcardIcon />} style={{ padding: '30px 200px', fontSize: '24px' }}>Dary</Button>
-            <Button variant="contained" onClick={handleActionsClick} startIcon={<FlashOnIcon />} style={{ padding: '30px 200px', fontSize: '24px' }}>Akce</Button>
-            <Button variant="contained" onClick={handleContactClick} startIcon={<ContactPhoneIcon />} style={{ padding: '30px 200px', fontSize: '24px' }}>Kontakt</Button>
+            <Button variant="contained" onClick={handleCatsClick} style={{ padding: '30px 200px', fontSize: '24px' }}>Kočky <span style={{ marginLeft: '10px' }}><PetsIcon /></span> </Button>
+            <Button variant="contained" onClick={handleDogsClick} style={{ padding: '30px 200px', fontSize: '24px' }}>Psi <><span style={{ marginLeft: '10px' }}><LocalFireDepartmentIcon/></span> <PetsIcon/></></Button>
+            <Button variant="contained" onClick={handleGiftsClick} style={{ padding: '30px 200px', fontSize: '24px' }}>Dary <span style={{ marginLeft: '10px' }}><CardGiftcardIcon /></span></Button>
+            <Button variant="contained" onClick={handleActionsClick} style={{ padding: '30px 200px', fontSize: '24px' }}>Akce <span style={{ marginLeft: '10px' }}><FlashOnIcon /></span></Button>
+            <Button variant="contained" onClick={handleContactClick} style={{ padding: '30px 200px', fontSize: '24px' }}>Kontakt <span style={{ marginLeft: '10px' }}><ContactPhoneIcon /></span></Button>
             </ButtonGroup>
             </div>
         </>

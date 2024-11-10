@@ -6,8 +6,6 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 
-
-
 export function CatsReservation() {
     const [date, setDate] = useState('');
     const [availableTimes, setAvailableTimes] = useState([]);
@@ -15,7 +13,6 @@ export function CatsReservation() {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        // Generování časových slotů při prvním načtení stránky
         const times = generateTimeSlots();
         setAvailableTimes(times);
     }, []);
@@ -57,11 +54,9 @@ export function CatsReservation() {
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         setDate(selectedDate);
-        // fetchAvailableTimes(selectedDate);
         if (selectedDate) {
             fetchAvailableTimes(selectedDate);
         } else {
-            // Pokud není datum vybráno, vrátíme všechny časové sloty
             setAvailableTimes(generateTimeSlots());
         }
     };
@@ -105,10 +100,12 @@ export function CatsReservation() {
 
     return (
         <>
+        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={4} mb={2}>
+            <div className='catReservation-page'>
             <h1>Rezervace tulení s kočičkami</h1>
-            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mb={2}>
+            
                 <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
-                    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mb={2}>
+                    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={4} mb={2}>
                         <div className="form-field" style={{ marginBottom: '20px', width: '100%' }}>
                             <label><strong>Vyberte datum:</strong></label>
                             <input
@@ -140,6 +137,7 @@ export function CatsReservation() {
                 </form>
 
                 {message && <p>{message}</p>}
+                </div>
             </Box>
         </>
     );

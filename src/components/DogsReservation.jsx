@@ -12,6 +12,10 @@ export function DogsReservation() {
     const [selectedTime, setSelectedTime] = useState('');
     const [message, setMessage] = useState('');
 
+    useEffect(() => {
+        const times = generateTimeSlots();
+        setAvailableTimes(times);
+    }, []);
     const generateTimeSlots = () => {
         const times = [];
         for (let hour = 9; hour < 17; hour++) {
@@ -24,7 +28,7 @@ export function DogsReservation() {
     const fetchAvailableTimes = async (selectedDate) => {
         try {
             const { data, error } = await supabase
-                .from('catsReservation')
+                .from('dogsReservation')
                 .select('time_from')
                 .eq('date', selectedDate);
 
@@ -51,6 +55,11 @@ export function DogsReservation() {
         const selectedDate = e.target.value;
         setDate(selectedDate);
         fetchAvailableTimes(selectedDate);
+        if (selectedDate) {
+            fetchAvailableTimes(selectedDate);
+        } else {
+            setAvailableTimes(generateTimeSlots());
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -66,7 +75,7 @@ export function DogsReservation() {
 
         try {
             const { data, error } = await supabase
-                .from('catsReservation')
+                .from('dogsReservation')
                 .insert([
                     {
                         date: date,
@@ -91,24 +100,28 @@ export function DogsReservation() {
 
     return(
         <>
+        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={4} mb={2}>
+        <div className='dogReservation-page'>
             <h1>Rezervace venčení s pejsky</h1>
            
-             <form onSubmit={handleSubmit}>
-                <div className="form-field">
+             <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
+             <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={4} mb={2}>
+                <div className="form-field" style={{ marginBottom: '20px', width: '100%' }}>
                     <label><strong>Vyberte datum:</strong></label>
                     <input
                         type="date"
                         value={date}
                         onChange={handleDateChange}
+                        style={{ width: '100%', padding: '8px', marginTop: '10px' }}
                     />
                 </div>
-
-                {availableTimes.length > 0 && (
-                    <div className="form-field">
-                        <label><strong>Vyberte čas:</strong></label>
+                
+                <div className="form-field" style={{ marginBottom: '20px', width: '100%' }}>
+                    <label><strong>Vyberte čas:</strong></label>
                         <select
                             value={selectedTime}
                             onChange={(e) => setSelectedTime(e.target.value)}
+                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
                         >
                             <option value="">-- Vyberte čas --</option>
                             {availableTimes.map((time, index) => (
@@ -118,13 +131,14 @@ export function DogsReservation() {
                             ))}
                         </select>
                     </div>
-                )}
-                <Box display="flex" justifyContent="center" alignItems="center" my={2}>
+
                     <Button variant="contained" type="submit">Rezervovat</Button>
                 </Box>
             </form>
 
             {message && <p>{message}</p>}
+            </div>
+            </Box>
         </>
     )
 }

@@ -19,6 +19,7 @@ export function Login({setIsAuthenticated}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false)
     
     const { login, isAuth } = useAuth();
     const navigate = useNavigate();
@@ -33,22 +34,29 @@ export function Login({setIsAuthenticated}) {
 
     const handleLoginClick =  async (e) => {
         e.preventDefault()
-        console.log('Přihlašuji....', email, password)
+        console.log('Přihlašuji....', email)
         try {
-            await login(email, password);
-            if (isAuth) {
-              setIsAuthenticated(true);
-              navigate('/');
-              console.log("Heslo ověřeno")
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+
+            if (error) {
+                console.error('Přihlášení selhalo:', error.message);
+                alert('Nesprávný e-mail nebo heslo');
             } else {
-              alert('Nesprávný e-mail nebo heslo');
+                setIsAuthenticated(true);
+                const userData = data.user;
+                
+                const isAdmin = userData.app_metadata?.is_claims_admin || false;
+                setIsAdmin(isAdmin);
+
+                navigate('/');
             }
-          } catch (error) {
+        } catch (error) {
             console.error('Přihlášení selhalo:', error);
             alert('Došlo k chybě při přihlášení');
-          }
-        // login(email, password);
-        
+        }
     };
 
     const handleRegistrationClick = () => {
@@ -94,28 +102,14 @@ export function Login({setIsAuthenticated}) {
                         }
                         label="Heslo"
                         inputProps={{
-                          style: { backgroundColor: 'white' } // nastavení barvy pozadí na bílou
+                          style: { backgroundColor: 'white' }
                       }}
                     />
                 </FormControl>
 
-                <Button
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                    sx={{ mt: 2 }}
-                >
-                    Přihlásit se
-                </Button>
+                <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>Přihlásit se</Button>
 
-                <Button
-                    onClick={handleRegistrationClick}
-                    variant="outlined"
-                    fullWidth
-                    sx={{ mt: 2 }}
-                >
-                    Registrovat se
-                </Button>
+                <Button onClick={handleRegistrationClick} variant="outlined" fullWidth sx={{ mt: 2 }}>Registrovat se</Button>
             </form>
         </Box>      
     );

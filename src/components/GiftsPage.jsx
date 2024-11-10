@@ -1,14 +1,31 @@
 import React, { useState, useEffect }  from "react";
+import { supabase } from '../supabase/supabase-client';
+import { AddGift } from "./AddGift";
 
 export function GiftsPage() {
 
     const [gifts, setGifts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/gifts')
-        .then(response => response.json())
-        .then(data => setGifts(data));
+        const fetchGifts = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('gifts') 
+                    .select('*'); 
+
+                if (error) {
+                    console.error('Chyba při načítání darů:', error);
+                } else {
+                    setGifts(data);
+                }
+            } catch (error) {
+                console.error('Chyba při načítání dat:', error);
+            }
+        };
+
+        fetchGifts();
     }, []);
+
 
    return(
         <>
@@ -29,6 +46,7 @@ export function GiftsPage() {
                     </div>
                 ))}
             </div>
+            <AddGift></AddGift>
             </div>
         </>
     )

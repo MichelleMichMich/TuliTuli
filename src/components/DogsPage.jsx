@@ -6,15 +6,42 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-export function DogsPage() {
+import { supabase } from '../supabase/supabase-client';
+import { AddDog } from "./AddDog";
+
+export function DogsPage({ isAdmin }) {
 
     const [dogs, setDogs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/dogs')
-        .then(response => response.json())
-        .then(data => setDogs(data));
-    }, []);
+    const fetchDogs = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('dogs')  
+                .select('*'); 
+
+            if (error) {
+                console.error('Chyba při načítání psů:', error);
+            } else {
+                const updatedDogs = data.map(dog => {
+                    const { data: urlData } = supabase
+                        .storage
+                        .from('imagesDogs')
+                        .getPublicUrl(`${dog.imageUrl}`);
+                    return {
+                        ...dog,
+                        imageUrl: urlData.publicUrl, 
+                    };
+                });
+                setDogs(updatedDogs);
+            }
+        } catch (error) {
+            console.error('Chyba při načítání dat:', error);
+        }
+    };
+
+    fetchDogs();
+}, []);
 
     const navigate = useNavigate();
     const handleDogReservation = () => {
@@ -25,13 +52,26 @@ export function DogsPage() {
         navigate(`/dogs/${id}`);
     }
 
+    const handleAddNewDog = () => {
+        navigate('/dogs/add');
+    };
+
 
     return(
         <>
-            <h1>Pejsi v TuliTuli</h1>
+        <div className="dogs-page">
+            <h1 className="dogs-header">Pejsci v TuliTuli</h1>
             <Box display="flex" justifyContent="center" alignItems="center" my={2}>
             <Button variant="contained" onClick={handleDogReservation}>Rezervace venčení</Button>
             </Box>
+
+            {isAdmin && (
+                <Box display="flex" justifyContent="center" alignItems="center" my={2}>
+                    <Button variant="contained" color="secondary" onClick={handleAddNewDog}>
+                        Přidat nového pejska
+                    </Button>
+                </Box>
+            )}
 
             <div className="dogs-offer">
                 {dogs.map((dog) => (
@@ -41,10 +81,13 @@ export function DogsPage() {
                             <h2>{dog.name}</h2>
                             <p>{dog.age}</p>
                         </div>
-                        {/* <button onClick={handleDogReservation}>Rezervace venčení</button> */}
-                    </div>
-                ))}
+                        </div>
+                ))} 
+                </div>
+                <div className="add-dog-container">
+                    <AddDog></AddDog>
             </div>
+        </div>
         </>
     )
 }

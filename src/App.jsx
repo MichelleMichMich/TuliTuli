@@ -14,7 +14,6 @@ import { AnimalDetail } from './components/AnimalDetail'
 import { CatsReservation } from './components/CatsReservation'
 import { DogsReservation } from './components/DogsReservation'
 import { GiftsPage } from './components/GiftsPage'
-import { ActionsHasBeen } from './components/ActionsHasBeen'
 import { ActionsPage } from './components/ActionsPage'
 import { ContactPage } from './components/ContactPage'
 
@@ -22,6 +21,8 @@ import { ContactPage } from './components/ContactPage'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
+
   return (
     <>
       <AuthProvider>
@@ -38,7 +39,6 @@ function App() {
           <Route path='/:animalType/:id' element={<AnimalDetail/>}/>
           <Route path='/gifts' element={<GiftsPage/>}/>
           <Route path='/actions' element={<ActionsPage/>}/>
-          <Route path='/actions/hasbeen' element={<ActionsHasBeen/>}/>
           <Route path='/contact' element={<ContactPage/>}/>
         </Routes>
       </Router>

@@ -5,15 +5,42 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
+import { supabase } from '../supabase/supabase-client';
+import { AddCat } from "./AddCat";
 
-export function CatsPage() {
+
+export function CatsPage({ isAdmin }) {
 
     const [cats, setCats] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cats`)
-        .then(response => response.json())
-        .then(data => setCats(data));
+        const fetchCats = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('cats')  
+                    .select('*'); 
+
+                if (error) {
+                    console.error('Chyba při načítání koček:', error);
+                } else {
+                    const updatedCats = data.map((cat) => {
+                        const { data: urlData } = supabase
+                            .storage
+                            .from('imageCats')
+                            .getPublicUrl(`${cat.imageUrl}`);
+                        return {
+                            ...cat,
+                            imageUrl: urlData.publicUrl, 
+                        };
+                    });
+                    setCats(updatedCats);
+                }
+            } catch (error) {
+                console.error('Chyba při načítání dat:', error);
+            }
+        };
+
+        fetchCats();
     }, []);
 
     const navigate = useNavigate();
@@ -25,15 +52,27 @@ export function CatsPage() {
         navigate(`/cats/${id}`);
     }
 
+    const handleAddNewCat = () => {
+        navigate('/cats/add');
+    };
+
     return(
         <>
-            
+            <div className="cats-page">
             <h1 className="cats-header">Kočičky v TuliTuli</h1>
             <Box display="flex" justifyContent="center" alignItems="center" my={2}>
             <Button variant="contained" onClick={handleCatReservation}>Rezervace tulení</Button>
             </Box>
            
+            {isAdmin && (
+                <Box display="flex" justifyContent="center" alignItems="center" my={2}>
+                    <Button variant="contained" color="secondary" onClick={handleAddNewCat}>
+                        Přidat novou kočičku
+                    </Button>
+                </Box>
+            )}
 
+            
             <div className="cats-offer">
                 {cats.map((cat) => (
                     <div key={cat.id} className="cat-card" onClick={() => handleCardClick('cats', cat.id)}>
@@ -43,9 +82,12 @@ export function CatsPage() {
                             <p>{cat.age}</p>
                         </div>
                     </div>
-                ))}
+                ))} 
+                </div>
+                <div className="add-cat-container">
+                    <AddCat></AddCat>
             </div>
-        
+        </div>
         </>
     )
 }

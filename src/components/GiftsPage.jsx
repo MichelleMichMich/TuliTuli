@@ -30,7 +30,7 @@ export function GiftsPage() {
    return(
         <>
         <div className="gifts-page">
-            <h1>Dary pro TuliTuli</h1>
+            <h1 className="gifts-header">Dary pro TuliTuli</h1>
             <p>Dary, které můžete poskytnou TuliTuli a my za ně budeme velmi vděční</p>
             <p>Pokud chcete útulku TuliTuli něco darovat, zde máte pár tipů, keré jsou aktuálně nejvíce potřeba.</p>
             <p>Pozor, jednotlivé položky se mění v průběhu času dle aktuální potřeby</p>
@@ -46,7 +46,9 @@ export function GiftsPage() {
                     </div>
                 ))}
             </div>
+            <div className="add-gift-container">
             <AddGift></AddGift>
+            </div>
             </div>
         </>
     )

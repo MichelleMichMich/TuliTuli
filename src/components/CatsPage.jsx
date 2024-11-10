@@ -52,10 +52,6 @@ export function CatsPage({ isAdmin }) {
         navigate(`/cats/${id}`);
     }
 
-    const handleAddNewCat = () => {
-        navigate('/cats/add');
-    };
-
     return(
         <>
             <div className="cats-page">
@@ -63,16 +59,7 @@ export function CatsPage({ isAdmin }) {
             <Box display="flex" justifyContent="center" alignItems="center" my={2}>
             <Button variant="contained" onClick={handleCatReservation}>Rezervace tulení</Button>
             </Box>
-           
-            {isAdmin && (
-                <Box display="flex" justifyContent="center" alignItems="center" my={2}>
-                    <Button variant="contained" color="secondary" onClick={handleAddNewCat}>
-                        Přidat novou kočičku
-                    </Button>
-                </Box>
-            )}
-
-            
+                    
             <div className="cats-offer">
                 {cats.map((cat) => (
                     <div key={cat.id} className="cat-card" onClick={() => handleCardClick('cats', cat.id)}>

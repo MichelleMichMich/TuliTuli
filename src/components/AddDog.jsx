@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabase/supabase-client';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export function AddDog() {
     const [name, setName] = useState('');
@@ -59,48 +62,56 @@ export function AddDog() {
     return (
         <>
             <div className="add-dog-card">
-            <div className="dog-info">
-                <h2>Přidat nového pejska</h2>
-                <form onSubmit={handleAddDog}>
-                    <div className="form-field">
-                        <label><strong>Jméno psa:</strong></label>
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
+                <div className="dog-info">
+                    <h2>Přidat nového pejska</h2>
+                    <form onSubmit={handleAddDog}>
+                        <Box
+                            sx={{
+                                '& > :not(style)': { m: 2, width: '100%' },
+                                maxWidth: '400px',
+                                margin: 'auto',
+                                padding: '16px',
+                            }}
+                        >
+                            <TextField
+                                label="Jméno"
+                                variant="outlined"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                fullWidth
+                            />
+                            <TextField
+                                label="Věk"
+                                variant="outlined"
+                                value={age}
+                                onChange={(e) => setAge(e.target.value)}
+                                fullWidth
+                            />
+                            <TextField
+                                label="Popis"
+                                variant="outlined"
+                                multiline
+                                rows={4}
+                                value={story}
+                                onChange={(e) => setStory(e.target.value)}
+                                fullWidth
+                            />
+                            <div style={{ marginBottom: '16px' }}>
+                                <label><strong>Vyberte obrázek:</strong></label>
+                                <input
+                                    type="file"
+                                    onChange={(e) => setImageFile(e.target.files[0])}
+                                    style={{ display: 'block', marginTop: '8px', width: '100%' }}
+                                />
+                            </div>
+                            <Button variant="contained" type="submit" fullWidth>
+                                Přidat
+                            </Button>
+                        </Box>
+                    </form>
 
-                    <div className="form-field">
-                        <label><strong>Věk psa:</strong></label>
-                        <input
-                            type="text"
-                            value={age}
-                            onChange={(e) => setAge(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-field">
-                        <label><strong>Příběh psa:</strong></label>
-                        <textarea
-                            value={story}
-                            onChange={(e) => setStory(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-field">
-                        <label><strong>Vyberte obrázek:</strong></label>
-                        <input
-                            type="file"
-                            onChange={(e) => setImageFile(e.target.files[0])}
-                        />
-                    </div>
-
-                    <button type="submit">Přidat psa</button>
-                </form>
-
-                {message && <p>{message}</p>}
-            </div>
+                    {message && <p>{message}</p>}
+                </div>
             </div>
         </>
     );

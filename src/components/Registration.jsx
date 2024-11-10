@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useAuth } from '../context/AuthContext'
 import { supabase } from '../supabase/supabase-client';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,8 +11,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-
 
 export function Registration() {
     const [firstName, setFirstName] = useState('');

@@ -31,18 +31,6 @@ export function NavBar({ setIsAuthenticated }) {
     };
 
     return (
-        // <div className="nav-bar">
-        // <ButtonGroup variant="text" aria-label="Basic button group">
-        //     <Button onClick={() => navigate('/')} startIcon={<HomeIcon />}></Button>
-        //     <Button onClick={() => navigate('/cats')} startIcon={<><PetsIcon /></>}></Button>
-        //     <Button onClick={() => navigate('/dogs')} startIcon={<><LocalFireDepartment/> <PetsIcon/></>}></Button>
-        //     <Button onClick={() => navigate('/gifts')} startIcon={<CardGiftcardIcon />}></Button>
-        //     <Button onClick={() => navigate('/actions')} startIcon={<FlashOnIcon />}></Button>
-        //     <Button onClick={() => navigate('/contact')} startIcon={<ContactPhoneIcon />}></Button>
-        // </ButtonGroup>
-        //     <Button variant="outlined" onClick={handleLogoutClick}>Odhlásit</Button>
-        // </div>
-
 <AppBar position="fixed" color="default" style={{ backgroundColor: '#ffffff', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)' }}>
 <Toolbar>
     <ButtonGroup variant="text" aria-label="Basic button group">

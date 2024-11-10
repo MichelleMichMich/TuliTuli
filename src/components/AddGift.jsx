@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabase/supabase-client';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export function AddGift() {
     const [name, setName] = useState('');
@@ -26,7 +29,6 @@ export function AddGift() {
                 return;
             }
 
-            // Získání veřejné URL nahraného obrázku
             const { data: urlData, error: urlError } = supabase
                 .storage
                 .from('imagesGifts')
@@ -70,32 +72,35 @@ export function AddGift() {
 
     return (
         <>
-            <div className="add-gift-form">
-                <h2>Přidat nový dar</h2>
-                <form onSubmit={handleAddGift} style={{ width: '100%', maxWidth: '400px', margin: '0 auto' }}>
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Název daru:</strong></label>
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                        />
-                    </div>
+        <div className="add-gift-card">
+                <div className="add-gift-form">
+                    <h2>Přidat nový dar</h2>
+                    <form onSubmit={handleAddGift}>
+                        <Box
+                            sx={{ '& > :not(style)': { m: 2, width: '100%' }, maxWidth: '400px', margin: 'auto', padding: '16px' }}>
+                            <TextField
+                                label="Název"
+                                variant="outlined"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                fullWidth
+                            />
+                            <div style={{ marginBottom: '16px' }}>
+                                <label><strong>Vyberte obrázek:</strong></label>
+                                <input
+                                    type="file"
+                                    onChange={(e) => setImageFile(e.target.files[0])}
+                                    style={{ display: 'block', marginTop: '8px', width: '100%' }}
+                                />
+                            </div>
+                            <Button variant="contained" type="submit" fullWidth>
+                                Přidat
+                            </Button>
+                        </Box>
+                    </form>
 
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Vyberte obrázek:</strong></label>
-                        <input
-                            type="file"
-                            onChange={(e) => setImageFile(e.target.files[0])}
-                            style={{ width: '100%', marginTop: '10px' }}
-                        />
-                    </div>
-
-                    <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>Přidat dar</button>
-                </form>
-
-                {message && <p>{message}</p>}
+                    {message && <p>{message}</p>}
+                </div>
             </div>
         </>
     );

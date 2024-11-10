@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabase/supabase-client';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export function AddAction() {
     const [name, setName] = useState('');
@@ -82,72 +85,73 @@ export function AddAction() {
 
     return (
         <>
-            <div className="add-action-form">
-                <h2>Přidat novou akci</h2>
-                <form onSubmit={handleAddAction} style={{ width: '100%', maxWidth: '400px', margin: '0 auto' }}>
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Název akce:</strong></label>
-                        <input
-                            type="text"
-                            value={name || ''}
-                            onChange={(e) => setName(e.target.value)}
-                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                        />
-                    </div>
+            <div className="add-action-card">
+                <div className="add-action-form">
+                    <h2>Přidat novou akci</h2>
+                    <form onSubmit={handleAddAction}>
+                        <Box sx={{ '& > :not(style)': { m: 2, width: '100%' }, maxWidth: '400px', margin: 'auto', padding: '16px' }}>
+                            <TextField
+                                label="Název akce"
+                                variant="outlined"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                fullWidth
+                            />
+                            <TextField
+                                label="Datum konání"
+                                variant="outlined"
+                                type="date"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                fullWidth
+                                InputLabelProps={{ shrink: true }}
+                            />
+                            <TextField
+                                label="Čas začátku (time_from)"
+                                variant="outlined"
+                                type="time"
+                                value={timeFrom}
+                                onChange={(e) => setTimeFrom(e.target.value)}
+                                fullWidth
+                                InputLabelProps={{ shrink: true }}
+                            />
+                            <TextField
+                                label="Čas konce (time_to)"
+                                variant="outlined"
+                                type="time"
+                                value={timeTo}
+                                onChange={(e) => setTimeTo(e.target.value)}
+                                fullWidth
+                                InputLabelProps={{ shrink: true }}
+                            />
+                            <div style={{ marginBottom: '16px' }}>
+                                <label><strong>Vyberte obrázek:</strong></label>
+                                <input
+                                    type="file"
+                                    onChange={(e) => setImageFile(e.target.files[0])}
+                                    style={{ display: 'block', marginTop: '8px', width: '100%' }}
+                                />
+                            </div>
+                            <TextField
+                                label="Popis"
+                                variant="outlined"
+                                multiline
+                                rows={4}
+                                value={story}
+                                onChange={(e) => setStory(e.target.value)}
+                                fullWidth
+                            />
+                            <Button variant="contained" type="submit" fullWidth>
+                                Přidat
+                            </Button>
+                        </Box>
+                    </form>
 
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Datum konání:</strong></label>
-                        <input
-                            type="date"
-                            value={date || ''}
-                            onChange={(e) => setDate(e.target.value)}
-                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                        />
-                    </div>
-
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Čas začátku (time_from):</strong></label>
-                        <input
-                            type="time"
-                            value={timeFrom || ''}
-                            onChange={(e) => setTimeFrom(e.target.value)}
-                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                        />
-                    </div>
-
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Čas konce (time_to):</strong></label>
-                        <input
-                            type="time"
-                            value={timeTo || ''}
-                            onChange={(e) => setTimeTo(e.target.value)}
-                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                        />
-                    </div>
-
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Vyberte obrázek:</strong></label>
-                        <input
-                            type="file"
-                            onChange={(e) => setImageFile(e.target.files[0])}
-                            style={{ width: '100%', marginTop: '10px' }}
-                        />
-                    </div>
-
-                    <div className="form-field" style={{ marginBottom: '20px' }}>
-                        <label><strong>Popis akce:</strong></label>
-                        <textarea
-                            value={story || ''}
-                            onChange={(e) => setStory(e.target.value)}
-                            style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                        />
-                    </div>
-
-                    <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>Přidat akci</button>
-                </form>
-
-                {message && <p>{message}</p>}
+                    {message && <p>{message}</p>}
+                </div>
             </div>
+
+
         </>
     );
 }

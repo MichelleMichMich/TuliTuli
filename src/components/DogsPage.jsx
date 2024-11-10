@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -52,11 +51,6 @@ export function DogsPage({ isAdmin }) {
         navigate(`/dogs/${id}`);
     }
 
-    const handleAddNewDog = () => {
-        navigate('/dogs/add');
-    };
-
-
     return(
         <>
         <div className="dogs-page">
@@ -65,13 +59,6 @@ export function DogsPage({ isAdmin }) {
             <Button variant="contained" onClick={handleDogReservation}>Rezervace venčení</Button>
             </Box>
 
-            {isAdmin && (
-                <Box display="flex" justifyContent="center" alignItems="center" my={2}>
-                    <Button variant="contained" color="secondary" onClick={handleAddNewDog}>
-                        Přidat nového pejska
-                    </Button>
-                </Box>
-            )}
 
             <div className="dogs-offer">
                 {dogs.map((dog) => (

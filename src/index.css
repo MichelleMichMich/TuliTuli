@@ -25,7 +25,6 @@ input:-webkit-autofill {
 }
 
 .nav-bar button {
-  
     margin: 5px 0;
   }
 
@@ -37,10 +36,31 @@ input:-webkit-autofill {
   }
 /* -----------------HOME ------------------------------------------------------ */
 .home-page {
-  text-align: center; 
+    text-align: center; 
     padding: 20px; 
     padding-top: 80px;
     min-height: 100vh; 
+    position: relative;
+    background-image: url('/images/tlapky.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.home-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-page > * {
+  position: relative;
+  z-index: 3; 
 }
 
 .home-page p {
@@ -60,14 +80,39 @@ input:-webkit-autofill {
 
 /* ------  CAT  ----------------------------------------------------------- */
 .cats-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 80px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+.cats-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.cats-page > * {
+position: relative;
+z-index: 3; 
+}
+
 .cats-header {
     margin-bottom: 20px;
   }
 
 .cat-card {
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -75,6 +120,7 @@ input:-webkit-autofill {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .cat-card:hover {
@@ -146,13 +192,11 @@ input:-webkit-autofill {
     }
   }
 
-
   .add-cat-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
-
 
   .add-cat-card {
     border: 1px solid #ddd;
@@ -163,7 +207,9 @@ input:-webkit-autofill {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .add-cat-card:hover {
@@ -196,10 +242,33 @@ input:-webkit-autofill {
     background-color: #0056b3;
 }
 
-
 /* ---  DOG  ----------------------------------------------------------- */
 .dogs-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 80px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.dogs-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.dogs-page > * {
+position: relative;
+z-index: 3; 
 }
 
 .dogs-header {
@@ -208,7 +277,7 @@ input:-webkit-autofill {
   }
 
 .dog-card {
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -216,18 +285,19 @@ input:-webkit-autofill {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .dog-card:hover {
     transform: scale(1.05);
   }
 
-  .header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 16px;
-  }
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
 .dog-image {
     width: 200px;             
@@ -284,17 +354,17 @@ input:-webkit-autofill {
     margin-top: 20px;
 }
 
-
-  .add-dog-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+.add-dog-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .add-dog-card:hover {
@@ -329,7 +399,33 @@ input:-webkit-autofill {
 
 /* ----- ANIMAL DETAIL ------------------------------------------------*/
 .animalDetail-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 80px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; 
+  background-position: center;
+}
+
+.animalDetail-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.animalDetail-page > * {
+position: relative;
+z-index: 3; 
 }
 
 .animal-image {
@@ -342,18 +438,91 @@ input:-webkit-autofill {
 
 /* ----- CATS RESERVATION ------------------------------------------------*/
 .catReservation-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 50px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.catReservation-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.catReservation-page > * {
+position: relative;
+z-index: 3; 
 }
 
 /* ----- DOGS RESERVATION ------------------------------------------------*/
 .dogReservation-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 50px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.dogReservation-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.dogReservation-page > * {
+position: relative;
+z-index: 3; 
 }
 
 /* ---  GIFT  ----------------------------------------------------------- */
 .gifts-page {
-    padding-top: 80px;
+  text-align: center; 
+  padding: 20px; 
+  padding-top: 80px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+.gifts-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.gifts-page > * {
+position: relative;
+z-index: 3; 
+}
+
 .gifts-header {
     text-align: center;
     margin-bottom: 20px;
@@ -368,6 +537,7 @@ input:-webkit-autofill {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .gift-card:hover {
@@ -421,7 +591,6 @@ input:-webkit-autofill {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    
   }
 
   @media (min-width: 600px) {
@@ -440,9 +609,84 @@ input:-webkit-autofill {
       grid-template-columns: repeat(4, 1fr);
     }
   }
+
+  .add-gift-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+  .add-gift-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.add-gift-card:hover {
+    transform: scale(1.05);
+}
+
+.add-gift-card .gift-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-gift-card input,
+.add-gift-card textarea,
+.add-gift-card button {
+    width: 100%;
+    max-width: 300px;
+    margin: 5px 0;
+    padding: 8px;
+}
+
+.add-gift-card button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-gift-card button:hover {
+    background-color: #0056b3;
+}
+
 /* ---  ACTIONS ----------------------------------------------------------- */
 .actions-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 80px;
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.actions-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.actions-page > * {
+position: relative;
+z-index: 3; 
 }
 
 .action-card {
@@ -454,14 +698,15 @@ input:-webkit-autofill {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .action-card:hover {
     transform: scale(1.05);
   }
-  .actions-page h1 {
+.actions-page h1 {
     margin-bottom: 50px; 
-  }
+}
 
   .header-container {
     display: flex;
@@ -519,6 +764,12 @@ input:-webkit-autofill {
     }
   }
 
+  .add-action-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
   .add-action-card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -529,12 +780,67 @@ input:-webkit-autofill {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-  }
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.add-action-card:hover {
+    transform: scale(1.05);
+}
+
+.add-action-card .action-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-action-card input,
+.add-action-card textarea,
+.add-action-card button {
+    width: 100%;
+    max-width: 300px;
+    margin: 5px 0;
+    padding: 8px;
+}
+
+.add-action-card button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-action-card button:hover {
+    background-color: #0056b3;
+}
 
 /* --------- CONTACT ------------------------- */
 .contacts-page {
+  text-align: center; 
+  padding: 20px; 
   padding-top: 80px;
-} 
+  min-height: 100vh; 
+  position: relative;
+  background-image: url('/images/tlapky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.contacts-page::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+z-index: 1;
+pointer-events: none;
+}
+
+.contacts-page > * {
+position: relative;
+z-index: 3; 
+}
 
 .contacts-offer {
   text-align: center; 

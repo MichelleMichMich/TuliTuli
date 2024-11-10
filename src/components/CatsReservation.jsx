@@ -4,6 +4,10 @@ import { supabase } from '../supabase/supabase-client';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 
 export function CatsReservation() {
@@ -100,8 +104,8 @@ export function CatsReservation() {
 
     return (
         <>
+        <div className='catReservation-page'>
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={4} mb={2}>
-            <div className='catReservation-page'>
             <h1>Rezervace tulení s kočičkami</h1>
             
                 <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
@@ -116,20 +120,27 @@ export function CatsReservation() {
                             />
                         </div>
 
+
                         <div className="form-field" style={{ marginBottom: '20px', width: '100%' }}>
-                            <label><strong>Vyberte čas:</strong></label>
-                            <select
-                                value={selectedTime}
-                                onChange={(e) => setSelectedTime(e.target.value)}
-                                style={{ width: '100%', padding: '8px', marginTop: '10px' }}
-                            >
-                                <option value="">-- Vyberte čas --</option>
-                                {availableTimes.map((time, index) => (
-                                    <option key={index} value={time}>
-                                        {time} - {`${parseInt(time.split(':')[0]) + 1}:00`}
-                                    </option>
-                                ))}
-                            </select>
+                            <FormControl fullWidth>
+                                <InputLabel id="select-time-label">Vyberte čas</InputLabel>
+                                <Select
+                                    labelId="select-time-label"
+                                    id="select-time"
+                                    value={selectedTime}
+                                    label="Vyberte čas"
+                                    onChange={(e) => setSelectedTime(e.target.value)}
+                                >
+                                    <MenuItem value="">
+                                        <em>-- Vyberte čas --</em>
+                                    </MenuItem>
+                                    {availableTimes.map((time, index) => (
+                                        <MenuItem key={index} value={time}>
+                                            {time} - {`${parseInt(time.split(':')[0]) + 1}:00`}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
                         </div>
 
                         <Button variant="contained" type="submit">Rezervovat</Button>
@@ -137,8 +148,8 @@ export function CatsReservation() {
                 </form>
 
                 {message && <p>{message}</p>}
-                </div>
             </Box>
+            </div>
         </>
     );
 }

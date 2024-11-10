@@ -34,9 +34,8 @@ export function ActionsPage() {
 
     return(
         <>
-            <div className="add-action-card">
             <div className="actions-page">
-            <h1>Akce u nás v TuliTuli</h1>
+            <h1 className="actions-header">Akce u nás v TuliTuli</h1>
            
             <div className="actions-offer">
                 {actions.map((action) => (
@@ -48,7 +47,8 @@ export function ActionsPage() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div >
+            <div className="add-action-container">
             <AddAction></AddAction>
             </div>
             </div>
